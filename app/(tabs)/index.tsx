@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import axios from "axios";
 import React from "react";
+import { Link, router } from "expo-router";
 interface RecipeData {
   id: number;
   title: string;
@@ -38,7 +39,7 @@ export default function TabOneScreen() {
       <View className="flex justify-between items-center bg-green-500 ">
         <SafeAreaView>
           <TextInput
-            placeholder="Search recipe"
+            placeholder="Type your ingredients"
             onChangeText={(newText) =>
               setText(newText.replace(/\s+/g, ",+").toLowerCase())
             }
@@ -61,11 +62,13 @@ export default function TabOneScreen() {
                 <Text>ID: {recipe.id}</Text>
                 <Text>Title: {recipe.title}</Text>
 
-                <Text>Image: {recipe.image}</Text>
                 <Image
                   source={{ uri: recipe.image }}
                   style={{ width: 100, height: 100 }}
                 />
+                <Pressable onPress={() => router.push(`/recipes/${recipe.id}`)}>
+                  <Text>See recipe</Text>
+                </Pressable>
               </View>
             ))}
         </ScrollView>
