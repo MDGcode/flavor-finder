@@ -41,9 +41,7 @@ export default function TabOneScreen() {
           <SafeAreaView>
             <TextInput
               placeholder="Type your ingredients"
-              onChangeText={(newText) =>
-                setText(newText.replace(/\s+/g, ",+").toLowerCase())
-              }
+              onChangeText={(newText) => setText(newText.replace(/\s+/g, ",+"))}
               defaultValue={text}
               className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl"
             />
@@ -60,20 +58,21 @@ export default function TabOneScreen() {
                   key={recipe.id}
                   className=" border-2 rounded-xl mx-4 my-2 p-4 flex justify-between h-96 max-w-full items-center"
                 >
-                  <Text className=" font-bold text-2xl mb-2 text-center">
+                  <Text className=" font-bold text-xl mb-2 text-center">
                     {recipe.title}
                   </Text>
 
                   <Image
                     source={{ uri: recipe.image }}
                     style={{ width: 200, height: 200 }}
+                    alt="Recipe image"
                     className=" rounded-xl"
                   />
                   <Pressable
                     onPress={() => router.push(`/recipes/${recipe.id}`)}
                   >
-                    <Text className="text-2xl font-bold mt-2 p-2 bg-green-600 rounded-xl w-80 text-center border">
-                      Cook recipe
+                    <Text className="text-xl font-bold mt-2 p-2 bg-green-600 rounded-xl w-80 text-center border">
+                      See recipe
                     </Text>
                   </Pressable>
                 </View>
