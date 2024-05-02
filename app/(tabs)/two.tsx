@@ -35,37 +35,46 @@ export default function TabTwoScreen() {
       });
   };
   return (
-    <View className="flex justify-between items-center bg-green-500 ">
-      <SafeAreaView>
-        <TextInput
-          placeholder="Search recipe"
-          onChangeText={(newText) => setText(newText)}
-          defaultValue={text}
-          className=" text-center border-2 rounded-xl py-1 px-10 w-96 "
-        />
-        <Pressable onPress={getApi} className=" text-center my-4">
-          <Text className=" text-center font-bold text-2xl bg-green-600 border border-green-800 rounded-lg">
-            Search
-          </Text>
-        </Pressable>
-      </SafeAreaView>
-      <ScrollView className="grid place-items-center grid-cols-2 bg-green-400  rounded-lg">
-        {Array.isArray(recipes) &&
-          recipes.map((recipe) => (
-            <View key={recipe.id} className="border-2 rounded-xl mx-4 my-2 p-4">
-              <Text>ID: {recipe.id}</Text>
-              <Text>Title: {recipe.title}</Text>
-              <Image
-                source={{ uri: recipe.image }}
-                style={{ width: 100, height: 100 }}
-              />
-              <Pressable onPress={() => router.push(`/recipes/${recipe.id}`)}>
-                <Text>See recipe</Text>
-              </Pressable>
-            </View>
-          ))}
-      </ScrollView>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <View className=" absolute h-[100%] bg-green-500 -z-10 w-full">
+        <View className="flex justify-between items-center bg-green-500 ">
+          <SafeAreaView>
+            <TextInput
+              placeholder="Search recipe"
+              onChangeText={(newText) => setText(newText)}
+              defaultValue={text}
+              className=" text-center border-2 rounded-xl py-1 px-10 w-96 "
+            />
+            <Pressable onPress={getApi} className=" text-center my-4">
+              <Text className=" text-center font-bold text-2xl bg-green-600 border border-green-800 rounded-lg">
+                Search
+              </Text>
+            </Pressable>
+          </SafeAreaView>
+          <ScrollView className="grid place-items-center grid-cols-2 bg-green-400  rounded-lg">
+            {Array.isArray(recipes) &&
+              recipes.map((recipe) => (
+                <View
+                  key={recipe.id}
+                  className="border-2 rounded-xl mx-4 my-2 p-4"
+                >
+                  <Text>ID: {recipe.id}</Text>
+                  <Text>Title: {recipe.title}</Text>
+                  <Image
+                    source={{ uri: recipe.image }}
+                    style={{ width: 100, height: 100 }}
+                  />
+                  <Pressable
+                    onPress={() => router.push(`/recipes/${recipe.id}`)}
+                  >
+                    <Text>See recipe</Text>
+                  </Pressable>
+                </View>
+              ))}
+          </ScrollView>
+          <StatusBar style="auto" />
+        </View>
+      </View>
+    </>
   );
 }

@@ -36,43 +36,51 @@ export default function TabOneScreen() {
 
   return (
     <>
-      <View className="flex justify-between items-center bg-green-500 ">
-        <SafeAreaView>
-          <TextInput
-            placeholder="Type your ingredients"
-            onChangeText={(newText) =>
-              setText(newText.replace(/\s+/g, ",+").toLowerCase())
-            }
-            defaultValue={text}
-            className=" text-center border-2 rounded-xl py-1 px-10 w-96 "
-          />
-          <Pressable onPress={getApi} className=" text-center my-4">
-            <Text className=" text-center font-bold text-2xl bg-green-600 border border-green-800 rounded-lg">
-              Search
-            </Text>
-          </Pressable>
-        </SafeAreaView>
-        <ScrollView className="grid place-items-center grid-cols-2 bg-green-400  rounded-lg">
-          {recipes &&
-            recipes.map((recipe) => (
-              <View
-                key={recipe.id}
-                className=" border-2 rounded-xl mx-4 my-2 p-4"
-              >
-                <Text>ID: {recipe.id}</Text>
-                <Text>Title: {recipe.title}</Text>
+      <View className=" absolute h-[100%] bg-green-500 -z-10 w-full">
+        <View className="flex justify-between items-center bg-green-500 ">
+          <SafeAreaView>
+            <TextInput
+              placeholder="Type your ingredients"
+              onChangeText={(newText) =>
+                setText(newText.replace(/\s+/g, ",+").toLowerCase())
+              }
+              defaultValue={text}
+              className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl"
+            />
+            <Pressable onPress={getApi} className=" text-center my-4">
+              <Text className=" text-center font-bold text-2xl bg-green-600 border-2 border-green-800 rounded-lg p-2">
+                Search
+              </Text>
+            </Pressable>
+          </SafeAreaView>
+          <ScrollView className="grid place-items-center grid-cols-2 bg-green-400  rounded-lg">
+            {recipes &&
+              recipes.map((recipe) => (
+                <View
+                  key={recipe.id}
+                  className=" border-2 rounded-xl mx-4 my-2 p-4 flex justify-between h-96 max-w-full items-center"
+                >
+                  <Text className=" font-bold text-2xl mb-2 text-center">
+                    {recipe.title}
+                  </Text>
 
-                <Image
-                  source={{ uri: recipe.image }}
-                  style={{ width: 100, height: 100 }}
-                />
-                <Pressable onPress={() => router.push(`/recipes/${recipe.id}`)}>
-                  <Text>See recipe</Text>
-                </Pressable>
-              </View>
-            ))}
-        </ScrollView>
-        <StatusBar style="auto" />
+                  <Image
+                    source={{ uri: recipe.image }}
+                    style={{ width: 200, height: 200 }}
+                    className=" rounded-xl"
+                  />
+                  <Pressable
+                    onPress={() => router.push(`/recipes/${recipe.id}`)}
+                  >
+                    <Text className="text-2xl font-bold mt-2 p-2 bg-green-600 rounded-xl w-80 text-center border">
+                      Cook recipe
+                    </Text>
+                  </Pressable>
+                </View>
+              ))}
+          </ScrollView>
+          <StatusBar style="auto" />
+        </View>
       </View>
     </>
   );
