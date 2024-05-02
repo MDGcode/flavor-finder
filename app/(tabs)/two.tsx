@@ -32,6 +32,7 @@ export default function TabTwoScreen() {
       })
       .catch((error) => {
         console.log(error);
+        alert(error);
       });
   };
   return (
@@ -43,10 +44,10 @@ export default function TabTwoScreen() {
               placeholder="Search recipe"
               onChangeText={(newText) => setText(newText)}
               defaultValue={text}
-              className=" text-center border-2 rounded-xl py-1 px-10 w-96 "
+              className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl"
             />
             <Pressable onPress={getApi} className=" text-center my-4">
-              <Text className=" text-center font-bold text-2xl bg-green-600 border border-green-800 rounded-lg">
+              <Text className=" text-center font-bold text-2xl bg-green-600 border-2 border-green-800 rounded-lg p-2">
                 Search
               </Text>
             </Pressable>
@@ -56,18 +57,23 @@ export default function TabTwoScreen() {
               recipes.map((recipe) => (
                 <View
                   key={recipe.id}
-                  className="border-2 rounded-xl mx-4 my-2 p-4"
+                  className="border-2 rounded-xl mx-4 my-2 p-4 flex justify-between h-96 max-w-full items-center"
                 >
-                  <Text>ID: {recipe.id}</Text>
-                  <Text>Title: {recipe.title}</Text>
+                  <Text className=" font-bold text-xl mb-2 text-center">
+                    {recipe.title}
+                  </Text>
                   <Image
                     source={{ uri: recipe.image }}
-                    style={{ width: 100, height: 100 }}
+                    style={{ width: 200, height: 200 }}
+                    alt="Recipe image"
+                    className=" rounded-xl"
                   />
                   <Pressable
                     onPress={() => router.push(`/recipes/${recipe.id}`)}
                   >
-                    <Text>See recipe</Text>
+                    <Text className="text-xl font-bold mt-2 p-2 bg-green-600 rounded-xl w-80 text-center border">
+                      See recipe
+                    </Text>
                   </Pressable>
                 </View>
               ))}
