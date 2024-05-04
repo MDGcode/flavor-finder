@@ -41,8 +41,7 @@ export default function RecipePage() {
   };
   const gradientColors =
     colorScheme === "light" ? ["#ffffff", "#c9f5da"] : ["#1A202C", "#374152"];
-  const buttonColors =
-    colorScheme === "light" ? ["#07f261", "#63eb97"] : ["#2f3540", "#4a5261"];
+
   return (
     <ScrollView className="absolute h-[100%] bg-gray-200 dark:bg-slate-800 -z-10 w-full">
       <LinearGradient
@@ -84,7 +83,7 @@ export default function RecipePage() {
                   <AntDesign
                     name="arrowright"
                     size={10}
-                    color="gray"
+                    color="green"
                     className=""
                   />{" "}
                   {ingredient.original}

@@ -15,6 +15,7 @@ import axios from "axios";
 import React from "react";
 import { Link, router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import ModalScreen from "../modal";
 interface RecipeData {
   id: number;
   title: string;
@@ -25,7 +26,11 @@ export default function TabOneScreen() {
   const [text, setText] = useState("");
   const ingredientUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${text}&number=10&apiKey=${process.env.EXPO_PUBLIC_API_KEY}`;
   const [recipes, setRecipes] = useState<RecipeData[] | null>([]);
-  const colorScheme = useColorScheme(); // Get the current color scheme
+  const colorScheme = useColorScheme();
+  const [showModal, setShowModal] = useState(true);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   const getApi = () => {
     axios
       .get(ingredientUrl)
@@ -39,12 +44,13 @@ export default function TabOneScreen() {
   const gradientColors =
     colorScheme === "light" ? ["#ffffff", "#c9f5da"] : ["#1A202C", "#374152"];
   const buttonColors =
-    colorScheme === "light" ? ["#07f261", "#63eb97"] : ["#2f3540", "#4a5261"];
+    colorScheme === "light" ? ["#07f261", "#63eb97"] : ["#15803d", "#189445"];
   return (
     <>
-      <LinearGradient // Use LinearGradient for the background
-        colors={gradientColors} // Define your gradient colors
-        className=" absolute h-[100%] -z-10 w-full" // Make it full screen
+      {showModal && <ModalScreen toggleModal={toggleModal} />}
+      <LinearGradient
+        colors={gradientColors}
+        className=" absolute h-[100%] -z-10 w-full"
       >
         <View>
           <View className="flex justify-between items-center  ">
