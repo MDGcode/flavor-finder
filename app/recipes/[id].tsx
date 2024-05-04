@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, useColorScheme } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface RecipeData {
   id: number;
@@ -20,6 +21,7 @@ export default function RecipePage() {
   const { id } = useLocalSearchParams();
   const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${process.env.EXPO_PUBLIC_API_KEY}`;
   const [recipe, setRecipe] = useState<RecipeData | null>(null);
+  const colorScheme = useColorScheme(); // Get the current color scheme
 
   useEffect(() => {
     axios
@@ -37,10 +39,16 @@ export default function RecipePage() {
   const stripHtmlTags = (html: string) => {
     return html.replace(/<[^>]*>?/gm, " ");
   };
-
+  const gradientColors =
+    colorScheme === "light" ? ["#ffffff", "#c9f5da"] : ["#1A202C", "#374152"];
+  const buttonColors =
+    colorScheme === "light" ? ["#07f261", "#63eb97"] : ["#2f3540", "#4a5261"];
   return (
     <ScrollView className="absolute h-[100%] bg-gray-200 dark:bg-slate-800 -z-10 w-full">
-      <View className="flex justify-between items-center bg-gray-200 dark:bg-slate-800 ">
+      <LinearGradient
+        colors={gradientColors}
+        className="flex justify-between items-center bg-gray-200 dark:bg-slate-800 "
+      >
         {recipe && (
           <View className="flex justify-between items-center">
             <Text className="mt-12 mb-4 text-2xl font-semibold text-center dark:text-slate-300">
@@ -91,7 +99,7 @@ export default function RecipePage() {
             </Text>
           </View>
         )}
-      </View>
+      </LinearGradient>
     </ScrollView>
   );
 }
