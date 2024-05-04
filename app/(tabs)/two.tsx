@@ -15,6 +15,7 @@ import axios from "axios";
 import React from "react";
 import { Link, router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import SecondModalScreen from "../secondModal";
 
 interface RecipeData {
   id: number;
@@ -25,11 +26,15 @@ export default function TabTwoScreen() {
   const [text, setText] = useState("");
   const url = `https://api.spoonacular.com/recipes/complexSearch?query=${text}&number=10&apiKey=${process.env.EXPO_PUBLIC_API_KEY}`;
   const [recipes, setRecipes] = useState<RecipeData[] | null>([]);
+  const [showModal, setShowModal] = useState(true);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   const colorScheme = useColorScheme(); // Get the current color scheme
   const gradientColors =
     colorScheme === "light" ? ["#ffffff", "#c9f5da"] : ["#1A202C", "#374152"];
   const buttonColors =
-    colorScheme === "light" ? ["#07f261", "#63eb97"] : ["#2f3540", "#4a5261"];
+    colorScheme === "light" ? ["#07f261", "#63eb97"] : ["#15803d", "#189445"];
   const getApi = () => {
     axios
       .get(url)
@@ -43,6 +48,7 @@ export default function TabTwoScreen() {
   };
   return (
     <>
+      {showModal && <SecondModalScreen toggleModal={toggleModal} />}
       <LinearGradient
         colors={gradientColors}
         className=" absolute h-[100%] -z-10 w-full"
