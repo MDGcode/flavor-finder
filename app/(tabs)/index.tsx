@@ -61,7 +61,7 @@ export default function TabOneScreen() {
                   setText(newText.replace(/\s+/g, ",+"))
                 }
                 defaultValue={text}
-                className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl dark:text-slate-200 dark:border-slate-200  "
+                className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl dark:text-white dark:border-slate-200  "
               />
               <Pressable onPress={getApi} className=" text-center my-4">
                 <LinearGradient
@@ -82,7 +82,7 @@ export default function TabOneScreen() {
                     elevation: 6,
                   }}
                 >
-                  <Text className=" text-center font-bold text-2xl opacity-85 dark:text-slate-200 rounded-lg p-2 ">
+                  <Text className=" text-center font-bold text-2xl opacity-85 dark:text-white rounded-lg p-2 ">
                     Search by ingredients
                   </Text>
                 </LinearGradient>

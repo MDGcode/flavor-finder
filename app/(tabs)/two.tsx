@@ -59,7 +59,7 @@ export default function TabTwoScreen() {
               placeholder="Search recipe"
               onChangeText={(newText) => setText(newText)}
               defaultValue={text}
-              className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl dark:text-gray-200 dark:border-gray-200"
+              className=" text-center border-2 rounded-xl py-1 px-10 w-96 h-20 text-2xl dark:text-white dark:border-gray-200"
             />
             <Pressable onPress={getApi} className=" text-center my-4">
               <LinearGradient
@@ -80,7 +80,7 @@ export default function TabTwoScreen() {
                   elevation: 6,
                 }}
               >
-                <Text className=" text-center font-bold text-2xl opacity-85 dark:text-slate-200 rounded-lg p-2 ">
+                <Text className=" text-center font-bold text-2xl opacity-85 dark:text-white rounded-lg p-2 ">
                   Search recipe
                 </Text>
               </LinearGradient>

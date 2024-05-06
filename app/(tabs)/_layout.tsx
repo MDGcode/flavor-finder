@@ -30,15 +30,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Search by ingredients",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Find by ingredients",
+          tabBarIcon: ({ color }) => <TabBarIcon name="leaf" color={color} />,
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
-          title: "Search by name",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Recipe Search",
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
         }}
       />
     </Tabs>
